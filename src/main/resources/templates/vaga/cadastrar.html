@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<head>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<link rel=stylesheet th:href="@{/css/main.css}" />
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="#">Navbar</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			<div class="navbar-nav">
+				<a class="nav-item nav-link active" href="#">Home <span
+					class="sr-only">(current)</span></a> <a class="nav-item nav-link"
+					href="#">Features</a> <a class="nav-item nav-link" href="#">Pricing</a>
+				<a class="nav-item nav-link disabled" href="#" tabindex="-1"
+					aria-disabled="true">Disabled</a>
+			</div>
+		</div>
+	</nav>
+	<div class="container col-md-8 form-box">
+		<form method="POST" action="/eventos/vaga/cadastrar">
+			<div class="form-group">
+				<label for="nome">Nome</label> <input type="text"
+					class="form-control" name="nome">
+			</div>
+			<div class="form-group">
+				<label for="descricao">Descrição</label> <input type="text"
+					class="form-control" name="descricao">
+			</div>
+			<button type="submit" class="btn btn-primary">Cadastrar</button>
+		</form>
+	</div>
+	<h2>Vagas</h2>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Nome</th>
+				<th>Descrição</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="vaga : ${vagas}">
+				<td th:text="${vaga.nome}"></td>
+				<td th:text="${vaga.descricao}"></td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+</html>
