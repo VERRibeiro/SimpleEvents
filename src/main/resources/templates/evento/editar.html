@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Simple-Events</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel=stylesheet th:href="@{/css/main.css}" />
+</head>
+<body>
+	<div th:insert="~{fragment :: header}" />
+	<div class="container col-md-8 form-box">
+
+		<form method="POST" th:action="@{/evento/editar/} + ${evento.id}">
+			<h2>Dados do Evento</h2>
+			<div class="form-group">
+				<label for="titulo">Titulo</label> <input
+					th:value="${evento.titulo}" type="text" class="form-control"
+					name="titulo">
+			</div>
+			<div class="form-group">
+				<label for="local">Local</label> <input th:value="${evento.local}"
+					type="text" class="form-control" name="local">
+			</div>
+			<div class="form-group">
+				<label for="data">Data</label> <input type="date"  th:value="${#dates.format(evento.dataHora, 'yyyy-MM-dd')}"
+					class="form-control" name="data">
+			</div>
+			<h2>Vagas</h2>
+			<div class="row">
+				<div th:each="vaga : ${vagas}" class="form-group col-md-2">
+					<label th:text="${vaga.nome}" for="local"></label> <input
+						type="number" th:value="${vaga.qtdeVagas}"
+						class="form-control vagas" name="vagas">
+				</div>
+			</div>
+			<button id="enviar" type="submit" class="btn btn-primary">Salvar</button>
+			<button type="button" class="btn btn-primary" data-toggle="modal"
+				data-target="#myModal">Aprovados</button>
+			<a class="btn btn-outline-info" th:href="'avaliar/' + ${evento.id}">Avaliar
+				Candidatos</a> <a class="btn btn-success"
+				th:href="'/eventos/evento/finalizar/' + ${evento.id}">Finalizar Evento</a>
+		</form>
+	</div>
+
+	<div class="modal" id="myModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">Aprovados</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+
+				<!-- Modal body -->
+				<div class="modal-body">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Nome</th>
+								<th>Email</th>
+								<th>Vaga</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="candidato : ${candidatos}">
+								<td th:text="${candidato.nome}"></td>
+								<td th:text="${candidato.email}"></td>
+								<td th:text="${candidato.vaga.vaga.nome}"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<!-- Modal footer -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" th:src="@{/js/util.js}"></script>
+</body>
+
+<div th:insert="~{fragment :: scripts}" />
+</html>

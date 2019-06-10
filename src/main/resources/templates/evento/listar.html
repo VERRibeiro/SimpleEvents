@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Simple-Events</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel=stylesheet th:href="@{/css/main.css}" />
+</head>
+</head>
+<body>
+	<div th:insert="~{fragment :: header}" />
+	<div class="container">
+		<h4>Eventos</h4>
+		<div class="row">
+			<div th:each="evento : ${eventos}"
+				class="card-body col-md-3 custom-card">
+				<h5 th:text="${evento.titulo}" class="card-title"></h5>
+				<p th:text="${evento.local}" class="card-text"></p>
+				<p th:if="${evento.finalizado == true}" class="card-text">Evento Finalizado</p>
+				<p th:text="${#dates.format(evento.dataHora, 'dd/MM/yyyy')}" class="card-text"></p>				
+				<a
+					th:if="${session.usuario.candidato == true and session.usuario.vaga == null and evento.finalizado == false}"
+					th:href="@{/evento/inscreverUsuario} +'/' +${evento.id}"
+					class="btn btn-primary">Cadastrar</a>
+			</div>
+			<div th:if="${session.usuario != null}">
+				<a th:href="@{/evento/cadastro}" th:if="${session.usuario.admin == true}">
+					<div class="card custom-card" style="width: 200px">
+						<img class="card-img-top" src="/eventos/img/add.png" alt="Card image"
+							style="width: 100%">
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	</div>
+	<div th:insert="~{fragment :: scripts}" />
+</body>
+</html>

@@ -5,3 +5,38 @@
 .hidden{
 	display:none;
 }
+
+#header .jumbotron{
+	height: 30px;
+}
+
+#header{
+	margin-bottom:20px;
+}
+.nav-item .dropdown .btn-primary{
+	background-color:#212529;
+}
+
+.custom-card{
+	background-color:#ececec;
+	margin: 10px;
+}
+
+.float-right{
+	float:right;
+} 
+.custom-container{
+	margin-botton: 400px;
+}
+footer{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;  
+  color: white;
+  text-align: center;
+  background-color:#6c757d;  
+}
+.profile-card{
+	margin: 10px;
+}

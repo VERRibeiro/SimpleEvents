@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Simple-Events</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel=stylesheet th:href="@{/css/main.css}" />
+</head>
+<body>
+<div th:insert="~{fragment :: header}"/>
+	
+	<div class="container">
+	<h4>Vagas disponíveis</h4>
+		<div class="row">
+			<div th:each="vaga : ${vagas}" th:if="${vaga.qtdeVagas > 0}" class="card-body col-md-3 custom-card">
+				<h5 th:text="${vaga.nome}" class="card-title"></h5>
+				<p th:text="${vaga.descricao}" class="card-text"></p>
+				<p th:text="${vaga.qtdeVagas}" class="card-text"></p>				
+				<a th:href="@{/evento/inscreverUsuario/} +${usuario.id}+'/'+${eventoId}+ '/' + ${vaga.id}" class="btn btn-primary">Inscrever</a>
+			</div>
+		</div>
+	</div>
+<div th:insert="~{fragment :: scripts}"/>
+</body>
+</html>

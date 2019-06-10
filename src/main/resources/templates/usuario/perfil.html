@@ -1,0 +1,73 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Simple-Events</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel=stylesheet th:href="@{/css/main.css}" />
+</head>
+<body>
+	<div th:insert="~{fragment :: header}" />
+	<div class="container col-md-8 form-box">
+		<h4>Dados Básicos</h4>
+		<form method="POST" action="/eventos/usuario/register">
+			<div class="form-group">
+				<label for="exampleInputEmail1">Nome</label> <input
+					th:value="${u.nome}" type="text" class="form-control" name="nome">
+			</div>
+			<div class="form-group">
+				<label for="exampleInputEmail1">Email</label> <input
+					th:value="${u.email}" type="email" class="form-control"
+					name="email" placeholder="Example@hotmail.com">
+			</div>
+			<div class="form-group">
+				<label for="exampleInputEmail1">Telefone</label> <input type="text"
+					class="form-control" name="telefone">
+			</div>
+			<button type="submit" class="btn btn-primary">Atualizar</button>
+			<div th:if="${u.vaga != null}" class="row">
+				<div class="container mt-3">
+					<div class="media border p-3">
+						<div class="media-body">
+							<h4 th:text="${u.vaga.evento.titulo}" class="card-title"></h4>
+							<p th:text="'local: ' + ${u.vaga.evento.local}" class="card-text"></p>
+							<p th:text="'Data: ' + ${u.vaga.evento.dataHora}"
+								class="card-text"></p>
+							<p th:text="'Vaga: ' + ${u.vaga.vaga.nome}" class="card-text"></p>
+							<p th:text="'Descrição: ' + ${u.vaga.vaga.descricao}"
+								class="card-text"></p>
+							<p th:text="'Status da Vaga: ' + ${u.status}" class="card-text"></p>
+							<a th:if="u.status == neutro" th:href="@{/usuario/cancelarInscricao}"
+								class="float-right btn btn-danger">Cancelar Inscrição</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div th:if="${u.admin == true}" class="row">
+				<h4>Eventos Criados</h4>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Titulo</th>
+							<th>Local</th>
+							<th>Data</th>
+							<th>Editar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="evento : ${u.eventosAdministrados}">
+							<td th:text="${evento.titulo}"></td>
+							<td th:text="${evento.local}"></td>
+							<td th:text="${#dates.format(evento.dataHora, 'dd/MM/yyyy')}"></td>
+							<td><a th:if="${session.usuario.admin == true and evento.finalizado == false}"
+					th:href="@{/evento/editar/} + ${evento.id}" class="btn btn-primary"><span class="glyphicon">&#xe140;</span></a></td>
+							
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</form>
+	</div>
+	<div th:insert="~{fragment :: scripts}" />
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>eventos</title>
+</head>
+<body>
+	<div id="header" th:fragment="header">
+
+		<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+			<a class="navbar-brand" href="/eventos/home">Navbar</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#collapsibleNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="collapsibleNavbar">
+				<ul class="navbar-nav">
+					<li th:if="${session.usuario == null}" class="nav-item"><a 
+						class="nav-link" href="/eventos/usuario/loginForm">Entrar</a></li>
+					<li th:if="${session.usuario == null}" class="nav-item"><a
+						class="nav-link" href="/eventos/usuario/cadastro">Cadastrar</a></li>
+					<li th:if="${session.usuario != null}" class="nav-item"><a 
+						class="nav-link" href="/eventos/usuario/perfil">Perfil</a></li>					
+					<li class="nav-item"><a class="nav-link"
+						href="/eventos/evento/listar">Eventos</a></li>
+					<li th:if="${session.usuario != null}" class="nav-item"><a
+						th:if="${session.usuario.admin == true}" class="nav-link"
+						href="/eventos/vaga/listarVagas">Vagas</a></li>
+						<li th:if="${session.usuario != null}" class="nav-item"><a
+						class="nav-link float-right" href="/eventos/usuario/logout">Logout</a></li>
+
+				</ul>
+			</div>
+		</nav>
+	</div>
+
+	<div th:fragment="scripts">
+		
+		<!-- jQuery library -->
+		<script
+			src="/eventos/js/jquery-3.4.1.min.js"></script>
+
+		<!-- Popper JS -->
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+		<!-- Latest compiled JavaScript -->
+		<script
+			src="/eventos/js/bootstrap.min.js"></script>
+	</div>
+</body>
+</html>

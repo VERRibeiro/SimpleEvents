@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<title>Simple-Events</title>
 <link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel=stylesheet th:href="@{/css/main.css}" />
 </head>
-<body>	
-	<div class="container col-md-8 form-box">
+<body>
+	<div th:insert="~{fragment :: header}" />
+	<div class="container col-md-8 form-box custom-container">
+		<h2>Dados do Evento</h2>
 		<form method="POST" action="/eventos/evento/cadastrar">
 			<div class="form-group">
 				<label for="titulo">Titulo</label> <input type="text"
@@ -20,16 +20,20 @@
 				<label for="local">Local</label> <input type="text"
 					class="form-control" name="local">
 			</div>
-			
-			<h2>Vagas</h2>			
-			<div th:each="vaga : ${vagas}"  class="form-group">
-				<label th:text="${vaga.nome}" for="local"></label> <input type="number"
-					class="form-control vagas" name="vagas">
-			</div>			
-			<button id="enviar" type="submit" class="btn btn-primary">Cadastrar</button>	
+			<div class="form-group">
+				<label for="data">Data</label> <input type="date"
+					class="form-control" name="data">
+			</div>
+			<h2>Vagas</h2>
+			<div class="row">
+				<div th:each="vaga : ${vagas}" class="form-group col-md-2">
+					<label th:text="${vaga.nome}" for="local"></label> <input
+						type="number" class="form-control vagas" name="vagas">
+				</div>
+			</div>
+			<button id="enviar" type="submit" class="btn btn-primary">Cadastrar</button>
 		</form>
-		
 	</div>
+	<div th:insert="~{fragment :: scripts}" />
 </body>
-<script type="text/javascript" th:src="@{/js/util.js}"></script>
 </html>

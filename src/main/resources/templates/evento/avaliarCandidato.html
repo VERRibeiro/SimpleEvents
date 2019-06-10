@@ -1,0 +1,30 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Simple-Events</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+	<div th:insert="~{fragment :: header}" />
+	<div class="container col-md-8 form-box">
+		<div class="container">
+			<div class="row">
+				<div class="container mt-3">
+					<div th:each="candidato : ${candidatos}" class="media border p-3">
+						<img src="/eventos/img/profile.png" alt="John Doe"
+							class="mr-3 mt-3 rounded-circle" style="width: 60px;">
+						<div class="media-body">
+							<h4 th:text="${candidato.nome}" class="card-title"></h4>
+							<p th:text="${candidato.vaga.vaga.nome}" class="card-text"></p>
+							<a th:href="'/eventos/evento/aprovarCandidato/' + ${candidato.id}" class="btn btn-outline-success">Aprovar</a>
+							<a th:href="'/eventos/evento/reprovar/' + ${candidato.id}" class="btn btn-outline-danger">Reprovar</a>							 	                         								
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div th:insert="~{fragment :: scripts}" />
+</body>
+</html>

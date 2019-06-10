@@ -64,6 +64,32 @@ public class VagaEvento {
 	public void setVaga(Vaga vaga) {
 		this.vaga = vaga;
 	}
+	
+	public void addCandidato(Usuario usuario) {
+		this.candidatos.add(usuario);
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public List<Usuario> getCandidatos() {
+		return candidatos;
+	}
+
+	public void setCandidatos(List<Usuario> candidatos) {
+		this.candidatos = candidatos;
+	}
+
+	@Override
+	public String toString() {
+		return "VagaEvento [id=" + id + ", qtdeEvento=" + qtdeEvento + ", evento=" + evento + ", vaga=" + vaga + "]";
+	}
+
 
 	
 }

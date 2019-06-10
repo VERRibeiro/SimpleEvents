@@ -31,6 +31,12 @@ public class Vaga {
 	private String descricao;
 	
 	public Vaga() {};
+	public Vaga(int id, String nome, String descricao, int qtde) {
+		this.id = id;
+		this.nome = nome;
+		this.descricao = descricao;
+		this.qtdeVagas = qtde;
+	}
 		
 	public String getNome() {
 		return nome;
@@ -45,7 +51,6 @@ public class Vaga {
 		this.descricao = descricao;
 	}
 	
-
 	public int getId() {
 		return id;
 	}
@@ -61,6 +66,9 @@ public class Vaga {
 	public void setQtdeVagas(int qtdeVagas) {
 		this.qtdeVagas = qtdeVagas;
 	}
-
+	@Override
+	public String toString() {
+		return "Vaga [id=" + id + ", nome=" + nome + ", descricao=" + descricao + "]";
+	}
 	
 }

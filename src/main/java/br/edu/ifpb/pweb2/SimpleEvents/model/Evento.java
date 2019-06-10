@@ -81,6 +81,23 @@ public class Evento {
 	public void addVaga(VagaEvento vaga) {		
 		vagas.add(vaga);
 	}
+	
+	public List<VagaEvento> getVagas() {
+		return vagas;
+	}
+
+	public void setVagas(List<VagaEvento> vagas) {
+		this.vagas = vagas;
+	}
+
+	public Usuario getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Usuario admin) {
+		this.admin = admin;
+	}
+
 	@Override
 	public String toString() {
 		return "Evento [id=" + id + ", titulo=" + titulo + ", dataHora=" + dataHora + ", local=" + local
