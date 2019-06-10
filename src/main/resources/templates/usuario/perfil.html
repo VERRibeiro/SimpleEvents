@@ -10,7 +10,7 @@
 	<div th:insert="~{fragment :: header}" />
 	<div class="container col-md-8 form-box">
 		<h4>Dados Básicos</h4>
-		<form method="POST" action="/eventos/usuario/register">
+		<form method="POST" action="/eventos/usuario/editar">
 			<div class="form-group">
 				<label for="exampleInputEmail1">Nome</label> <input
 					th:value="${u.nome}" type="text" class="form-control" name="nome">
@@ -37,7 +37,7 @@
 							<p th:text="'Descrição: ' + ${u.vaga.vaga.descricao}"
 								class="card-text"></p>
 							<p th:text="'Status da Vaga: ' + ${u.status}" class="card-text"></p>
-							<a th:if="u.status == neutro" th:href="@{/usuario/cancelarInscricao}"
+							<a th:if="u.status == NEUTRO" th:href="@{/usuario/cancelarInscricao}"
 								class="float-right btn btn-danger">Cancelar Inscrição</a>
 						</div>
 					</div>

@@ -93,5 +93,15 @@ public class UsuarioController {
 
 		return new ModelAndView("redirect:loginForm");
 	}
+	
+	@RequestMapping(value = "/editar", method = RequestMethod.POST)
+	public ModelAndView editar(HttpServletRequest request, @Valid Usuario usuario, BindingResult br) {		
+		Usuario u = usuarioRepo.getOne(this.usuario.getId());
+		u.setNome(usuario.getNome());
+		u.setEmail(usuario.getEmail());
+		u.setTelefone(usuario.getTelefone());
+		usuarioRepo.save(u);
 
+		return new ModelAndView("redirect:perfil");
+	}
 }
